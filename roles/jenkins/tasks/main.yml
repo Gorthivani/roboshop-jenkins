@@ -1,0 +1,9 @@
+- name: create multibranch jobs
+  ansible.builtin.include_tasks:
+    file: mjob.yml
+  loop: "{{mjobs}}"
+
+- name: create single branch jobs
+  ansible.builtin.include_tasks:
+    file: sjob.yml
+  loop: " {{ sjobs }}"
