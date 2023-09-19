@@ -6,8 +6,15 @@
     folders:
       - { folder_name: "CI-piplines" }
       - { folder_name: "Infra-Jobs" }
+
     mjobs:
+
       - { job_name: "cart", repo_name: "https://github.com/Gorthivani/cart.git", folder_name : "CI-piplines"}
+      - { job_name: "catalogue", repo_name: "https://github.com/Gorthivani/catalogue.git", folder_name : "CI-piplines"}
+      - { job_name: "frontend", repo_name: "https://github.com/Gorthivani/frontend.git", folder_name : "CI-piplines"}
+      - { job_name: "payment", repo_name: "https://github.com/Gorthivani/payment.git", folder_name : "CI-piplines"}
+      - { job_name: "shipping", repo_name: "https://github.com/Gorthivani/shipping.git", folder_name : "CI-piplines"}
+      - { job_name: "user", repo_name: "https://github.com/Gorthivani/user.git", folder_name : "CI-piplines"}
 
     sjobs:
       - { job_name: "roboshop-terraform", repo_name: "https://github.com/Gorthivani/roboshop-terraform", folder_name : "Infra-Jobs"}
