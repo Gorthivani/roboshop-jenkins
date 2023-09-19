@@ -3,8 +3,12 @@
   roles:
     -jenkins
   vars:
+    folders:
+      - { folder_name: "CI-piplines" }
+      - { folder_name: "Infra-Jobs" }
     mjobs:
-      - { job_name: "cart", repo_name: "https://github.com/Gorthivani/cart.git"}
+      - { job_name: "cart", repo_name: "https://github.com/Gorthivani/cart.git", folder_name : "CI-piplines"}
 
     sjobs:
-      - { job_name: "roboshop-terraform", repo_name: "https://github.com/Gorthivani/roboshop-terraform" }
+      - { job_name: "roboshop-terraform", repo_name: "https://github.com/Gorthivani/roboshop-terraform", folder_name : "Infra-Jobs"}
+}
