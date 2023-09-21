@@ -16,19 +16,27 @@ def call(){
         //git "${BRANCH_NAME}":'main', url:"https://github.com/Gorthivani/${component}"
         stage('Compile code') {
             common.compile()
+        }
 
+        if(env.TAG_NAME == null) {
+
+            stage('Test') {
+                print 'Hello World'
+            }
+
+            stage('Cody Quality') {
+                print 'Hello World'
+            }
         }
-        stage('Test') {
-            print 'Hello World'
+        if(env.BRANCH_NAME == "main") {
+            stage('Code Security') {
+                print 'Hello World'
+            }
         }
-        stage('Cody Quality') {
-            print 'Hello World'
-        }
-        stage('Code Security') {
-            print 'Hello World'
-        }
-        stage('Release') {
-            print 'Hello World'
+        if(env.TAG_NAME ==~ ".*") {
+            stage('Release') {
+                print 'Hello World'
+            }
         }
     }
 }
