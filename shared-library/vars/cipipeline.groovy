@@ -1,7 +1,21 @@
 def call(){
     node('workstation'){
         sh "find .| sed -e '1d'|xargs rm -rf  "
-        git "${BRANCH_NAME}":'main', url:"https://github.com/Gorthivani/${component}"
+        sh 'env'
+        if(env.TAG_NAME ==~ ".*"){
+            env.branch_name="refs/tags/${env.TAG_NAME}"
+        }else{
+            env.branch_name="${env.BRANCH_NAME}"
+        }
+
+        checkout scmGit(
+                branches: [[name: branch_name]],
+
+                //userRemoteConfigs: [[url: 'https://github.com/jenkinsci/git-plugin.git']
+                userRemoteConfigs: [[url: "https://github.com/Gorthivani/${component}"]]
+        )
+
+        //git "${BRANCH_NAME}":'main', url:"https://github.com/Gorthivani/${component}"
         stage('Compile code') {
             common.compile()
 
