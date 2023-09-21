@@ -10,8 +10,6 @@ def call(){
 
         checkout scmGit(
                 branches: [[name: branch_name]],
-
-                //userRemoteConfigs: [[url: 'https://github.com/jenkinsci/git-plugin.git']
                 userRemoteConfigs: [[url: "https://github.com/Gorthivani/${component}"]]
         )
 
