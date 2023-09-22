@@ -21,13 +21,15 @@ def test() {
             sh 'npm test'
         }
         if (env.codeType = "python") {
-            sh 'npm test'
+            sh 'python3.6 -m unittest'
         }
     }
 }
 def codeQuality() {
     stage('Code Quality') {
-        print 'Code Quality'
+        env.sonaruser = sh (script: 'aws ssm get-parameter --name "sonarqube.user" --with-decryption --query="Parameter.Value"', returnStdout: true).trim()
+        env.sonarpass = sh (script: 'aws ssm get-parameter --name "sonarqube.pass" --with-decryption --query="Parameter.Value"', returnStdout: true).trim()
+        sh 'sonar-scanner -Dsonar.host.url=http://172.31.89.117:9000 -Dsonar.login=${sonaruser} -Dsonar.password=${sonarpass} -Dsonar.projectKey=${component} -Dsonar.qualitygate.wait=true'
     }
 }
 def codeSecurity() {
