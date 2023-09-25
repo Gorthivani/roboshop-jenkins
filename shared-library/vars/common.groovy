@@ -46,11 +46,13 @@ def codeSecurity() {
 }
 def release() {
     stage('Release') {
-        env.nexususer = sh(script: 'aws ssm get-parameter --name "nexusqube.user" --with-decryption --query="Parameter.Value" |xargs', returnStdout: true).trim()
-        env.nexuspass = sh(script: 'aws ssm get-parameter --name "nexusqube.pass" --with-decryption --query="Parameter.Value" |xargs', returnStdout: true).trim()
+        env.nexususer = sh(script: 'aws ssm get-parameter --name "nexus.username" --with-decryption --query="Parameter.Value" |xargs', returnStdout: true).trim()
+        env.nexuspass = sh(script: 'aws ssm get-parameter --name "nexus.password" --with-decryption --query="Parameter.Value" |xargs', returnStdout: true).trim()
         wrap([$class: "MaskPasswordsBuildWrapper", varPasswordPairs: [[password: nexuspass]]]) {
             if (env.codeType = "nodejs") {
                 sh 'zip -r ${component}.zip server.js node_modules'
+            }
+
             }
     }
 }
